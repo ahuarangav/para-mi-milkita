@@ -303,7 +303,7 @@ function start(){
     document.getElementById("intro").style.display="none";
 }
 
-/* SCROLL */
+/* SCROLL CHAPTERS */
 const chapters=document.querySelectorAll(".chapter");
 
 window.addEventListener("scroll",()=>{
@@ -316,17 +316,15 @@ window.addEventListener("scroll",()=>{
         }
     });
 
-    toggle("msg1", y>200 && y<800);
-    toggle("msg2", y>=800 && y<1400);
-    toggle("msg3", y>=1400 && y<2000);
-    toggle("msg4", y>=2000);
+    /* 💥 FIX DEFINITIVO MENSAJES */
+    document.querySelectorAll(".secret-msg").forEach(m=>m.classList.remove("show"));
+
+    if(y>=200 && y<800) document.getElementById("msg1").classList.add("show");
+    else if(y>=800 && y<1400) document.getElementById("msg2").classList.add("show");
+    else if(y>=1400 && y<2000) document.getElementById("msg3").classList.add("show");
+    else if(y>=2000) document.getElementById("msg4").classList.add("show");
 
 });
-
-/* toggle mensajes */
-function toggle(id, show){
-    document.getElementById(id).classList.toggle("show", show);
-}
 
 /* 💖 CORAZONES */
 setInterval(()=>{
