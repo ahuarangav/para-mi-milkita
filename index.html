@@ -22,7 +22,35 @@ body{
     overflow-x:hidden;
 }
 
-/* 🔐 LOCK SCREEN */
+/* 🎬 INTRO */
+#introScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    animation: fadeOut 3s ease forwards;
+    animation-delay:2.5s;
+}
+
+.loader{
+    width:60px;
+    height:60px;
+    border:4px solid #333;
+    border-top:4px solid #ff4d6d;
+    border-radius:50%;
+    margin-top:20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
+
+/* 🔐 LOCK */
 #lockScreen{
     position:fixed;
     width:100%;
@@ -51,7 +79,6 @@ body{
     cursor:pointer;
     background:white;
     color:black;
-    font-size:1rem;
 }
 
 /* HERO */
@@ -72,7 +99,7 @@ body{
     text-shadow:0 0 20px #ff4d6d;
 }
 
-/* CAPÍTULOS NETFLIX */
+/* CAPÍTULOS */
 .chapter{
     height:100vh;
     display:flex;
@@ -84,11 +111,13 @@ body{
     opacity:0;
     transform:translateY(50px);
     transition:1s;
+    filter:blur(10px);
 }
 
 .chapter.active{
     opacity:1;
     transform:translateY(0);
+    filter:blur(0);
 }
 
 .chapter img{
@@ -131,21 +160,14 @@ body{
     padding:15px;
 }
 
-.card-front{ background:#222; }
-.card-back{ background:#ff4d6d; transform:rotateY(180deg); }
+.card-front{background:#222;}
+.card-back{background:#ff4d6d; transform:rotateY(180deg);}
 
 /* CORAZONES */
-.hearts{
-    position:fixed;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-}
-
 .heart{
-    position:absolute;
+    position:fixed;
     color:#ff4d6d;
-    animation:float 8s linear infinite;
+    animation:float 7s linear;
 }
 
 @keyframes float{
@@ -153,7 +175,6 @@ body{
     to{transform:translateY(-100px);}
 }
 
-/* RESPONSIVE */
 @media(max-width:768px){
 .hero h1{font-size:2.5rem;}
 }
@@ -163,6 +184,12 @@ body{
 
 <body>
 
+<!-- 🎬 INTRO -->
+<div id="introScreen">
+    <h1>❤️ Cargando nuestra historia...</h1>
+    <div class="loader"></div>
+</div>
+
 <!-- 🔐 LOCK -->
 <div id="lockScreen">
     <h2>🔒 Clave de amor</h2>
@@ -170,10 +197,7 @@ body{
     <button class="btn" onclick="checkPassword()">Entrar ❤️</button>
 </div>
 
-<!-- 💖 CORAZONES -->
-<div class="hearts"></div>
-
-<!-- 🎵 MÚSICA -->
+<!-- 🎵 AUDIO -->
 <audio id="music" loop>
     <source src="voy-a-conquistar-tu-amor.mp3">
 </audio>
@@ -183,48 +207,41 @@ body{
 
     <h1>Nuestra Historia ❤️</h1>
 
-    <!-- 🔥 BOTÓN ÚNICO -->
-    <button class="btn" onclick="activarExperiencia()">
-        💖 Entrar a nuestra historia
+    <button class="btn" onclick="iniciarHistoria()">
+        🎬 Ver nuestra historia
     </button>
 
 </section>
 
-<!-- 🎬 CAPÍTULOS -->
+<!-- CAPÍTULOS -->
 <section class="chapter">
     <h1>Capítulo 1 💕</h1>
     <img src="foto1.jpg">
-    <p>El inicio de nuestra historia...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 2 💖</h1>
     <img src="foto2.jpg">
-    <p>Momentos especiales...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 3 ❤️</h1>
     <img src="foto3.jpg">
-    <p>Risas y aventuras...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 4 💞</h1>
     <img src="foto4.jpg">
-    <p>Más unidos que nunca...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 5 💘</h1>
     <img src="foto5.jpg">
-    <p>Momentos inolvidables...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 6 💝</h1>
     <img src="foto6.jpg">
-    <p>Todo lo que aún viene...</p>
 </section>
 
 <!-- 💌 CARTA -->
@@ -243,7 +260,7 @@ body{
 
 <script>
 
-/* 🔐 CONTRASEÑA */
+/* 🔐 PASSWORD */
 function checkPassword(){
     const pass = document.getElementById("password").value;
 
@@ -254,23 +271,21 @@ function checkPassword(){
     }
 }
 
-/* 🌙 MODO EXPERIENCIA (MÚSICA + FULLSCREEN) */
-function activarExperiencia(){
+/* 🎬 INICIO EXPERIENCIA */
+function iniciarHistoria(){
 
     const music = document.getElementById("music");
-
-    if (music) {
-        music.play();
-    }
+    music.play();
 
     const doc = document.documentElement;
-
-    if (doc.requestFullscreen) {
+    if(doc.requestFullscreen){
         doc.requestFullscreen();
     }
+
+    document.getElementById("introScreen").style.display="none";
 }
 
-/* 🎬 SCROLL ANIMACIÓN */
+/* 🎬 SCROLL */
 const chapters = document.querySelectorAll('.chapter');
 
 window.addEventListener('scroll',()=>{
@@ -282,17 +297,14 @@ window.addEventListener('scroll',()=>{
 });
 
 /* 💖 CORAZONES */
-function createHeart(){
+setInterval(()=>{
     const heart = document.createElement("div");
-    heart.classList.add("heart");
     heart.innerHTML="❤️";
+    heart.classList.add("heart");
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(Math.random()*20+15)+"px";
-    document.querySelector(".hearts").appendChild(heart);
-    setTimeout(()=>heart.remove(),8000);
-}
-
-setInterval(createHeart,400);
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),7000);
+},400);
 
 </script>
 
