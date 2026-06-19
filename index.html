@@ -179,9 +179,13 @@ audio{
 <div class="hearts"></div>
 
 <!-- Música -->
-<audio autoplay loop controls>
+<audio id="musica" loop controls>
     <source src="voy-a-conquistar-tu-amor.mp3" type="audio/mpeg">
 </audio>
+
+    <button class="btn" onclick="document.getElementById('musica').play()">
+  ▶ Activar música
+</button>
 
 <section class="hero">
     <h1>Para Milkita ❤️</h1>
