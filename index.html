@@ -51,6 +51,7 @@ body{
     cursor:pointer;
     background:white;
     color:black;
+    font-size:1rem;
 }
 
 /* HERO */
@@ -182,12 +183,9 @@ body{
 
     <h1>Nuestra Historia ❤️</h1>
 
-    <button class="btn" onclick="document.getElementById('music').play()">
-        ▶ Activar música
-    </button>
-
-    <button class="btn" onclick="document.documentElement.requestFullscreen()">
-        🌙 Modo romántico
+    <!-- 🔥 BOTÓN ÚNICO -->
+    <button class="btn" onclick="activarExperiencia()">
+        💖 Entrar a nuestra historia
     </button>
 
 </section>
@@ -202,31 +200,31 @@ body{
 <section class="chapter">
     <h1>Capítulo 2 💖</h1>
     <img src="foto2.jpg">
-    <p>Nuestros primeros momentos juntos...</p>
+    <p>Momentos especiales...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 3 ❤️</h1>
     <img src="foto3.jpg">
-    <p>Risas, aventuras y complicidad...</p>
+    <p>Risas y aventuras...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 4 💞</h1>
     <img src="foto4.jpg">
-    <p>Momentos que nunca olvidaré...</p>
+    <p>Más unidos que nunca...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 5 💘</h1>
     <img src="foto5.jpg">
-    <p>Más unidos que nunca...</p>
+    <p>Momentos inolvidables...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 6 💝</h1>
     <img src="foto6.jpg">
-    <p>Y todo lo que aún nos falta vivir...</p>
+    <p>Todo lo que aún viene...</p>
 </section>
 
 <!-- 💌 CARTA -->
@@ -237,7 +235,7 @@ body{
         <div class="card-inner">
             <div class="card-front">Toca para abrir 💌</div>
             <div class="card-back">
-                <p>Gracias por ser parte de mi vida ❤️</p>
+                <p>Te amo mucho ❤️ gracias por todo</p>
             </div>
         </div>
     </div>
@@ -245,7 +243,7 @@ body{
 
 <script>
 
-/* 🔐 CONTRASEÑA NUEVA */
+/* 🔐 CONTRASEÑA */
 function checkPassword(){
     const pass = document.getElementById("password").value;
 
@@ -253,6 +251,22 @@ function checkPassword(){
         document.getElementById("lockScreen").style.display="none";
     }else{
         alert("Clave incorrecta ❤️");
+    }
+}
+
+/* 🌙 MODO EXPERIENCIA (MÚSICA + FULLSCREEN) */
+function activarExperiencia(){
+
+    const music = document.getElementById("music");
+
+    if (music) {
+        music.play();
+    }
+
+    const doc = document.documentElement;
+
+    if (doc.requestFullscreen) {
+        doc.requestFullscreen();
     }
 }
 
