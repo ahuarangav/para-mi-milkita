@@ -4,156 +4,46 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>❤️ Para mi Milkita ❤️</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#0b0b0b;color:white;overflow-x:hidden}
-
-/* INTRO */
-#intro{
-position:fixed;width:100%;height:100%;background:black;
-display:flex;flex-direction:column;justify-content:center;align-items:center;
-z-index:99999;animation:fadeOut 3s ease forwards;animation-delay:2.5s;
-}
-.loader{
-width:60px;height:60px;border:4px solid #333;border-top:4px solid #ff4d6d;
-border-radius:50%;margin-top:20px;animation:spin 1s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
-
-/* LOCK */
-#lock{
-position:fixed;width:100%;height:100%;background:#0b0b0b;
-display:flex;flex-direction:column;justify-content:center;align-items:center;
-z-index:9999;
-}
-#lock input{
-padding:10px;border:none;border-radius:10px;margin-top:10px;
-}
-
-/* BUTTON */
-.btn{
-margin-top:15px;padding:14px 25px;border:none;border-radius:50px;
-cursor:pointer;background:white;color:black;font-size:1rem;transition:.3s;
-}
-.btn:hover{transform:scale(1.05)}
-
-/* HERO */
-.hero{
-height:100vh;display:flex;flex-direction:column;justify-content:center;
-align-items:center;text-align:center;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('foto1.jpg');
-background-size:cover;background-position:center;
-}
-.hero h1{
-font-family:'Great Vibes',cursive;
-font-size:4rem;text-shadow:0 0 25px #ff4d6d;
-}
-
-/* CHAPTERS */
-.chapter{
-min-height:100vh;
-display:flex;flex-direction:column;justify-content:center;align-items:center;
-text-align:center;padding:40px;
-opacity:0;transform:translateY(40px) scale(.98);
-filter:blur(10px);transition:1s ease;
-}
-.chapter.active{
-opacity:1;transform:translateY(0) scale(1);filter:blur(0);
-}
-.chapter img{
-width:280px;border-radius:20px;margin-top:20px;
-}
-
-/* CARTA */
-.card{
-width:340px;height:420px;
-perspective:1200px;cursor:pointer;margin-top:20px;
-}
-.card-inner{
-width:100%;height:100%;transition:1s;
-transform-style:preserve-3d;position:relative;
-}
+body{font-family:Poppins,sans-serif;background:#0b0b0b;color:#fff;overflow-x:hidden}
+#progress{position:fixed;top:0;left:0;height:4px;width:0;background:#ff4d6d;z-index:100000}
+#intro,#lock{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center}
+#intro{z-index:99999;animation:fadeOut 3s ease forwards;animation-delay:2.5s}
+#lock{z-index:9999}
+.loader{width:60px;height:60px;border:4px solid #333;border-top:4px solid #ff4d6d;border-radius:50%;animation:spin 1s linear infinite;margin-top:20px}
+@keyframes spin{to{transform:rotate(360deg)}} @keyframes fadeOut{to{opacity:0;visibility:hidden}}
+#lock input{padding:10px;border:none;border-radius:10px;margin-top:10px}
+.btn{margin-top:15px;padding:14px 25px;border:none;border-radius:50px;cursor:pointer}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('foto1.jpg');background-size:cover}
+.hero h1{font-family:'Great Vibes',cursive;font-size:4rem}
+.chapter{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:40px;opacity:0;transform:translateY(40px);filter:blur(10px);transition:1s}
+.chapter.active{opacity:1;transform:none;filter:none}
+.chapter img{width:280px;border-radius:20px;margin-top:20px;transition:.5s}
+.chapter img:hover{transform:scale(1.05)}
+.card{width:90%;max-width:420px;min-height:550px;perspective:1200px;cursor:pointer}
+.card-inner{position:relative;transform-style:preserve-3d;transition:1s;min-height:550px}
 .card.open .card-inner{transform:rotateY(180deg)}
-.card-front,.card-back{
-position:absolute;width:100%;height:100%;
-backface-visibility:hidden;border-radius:20px;
-}
-.card-front{
-background:#222;display:flex;justify-content:center;
-align-items:center;font-size:1.3rem;
-}
-.card-back{
-background:linear-gradient(135deg,#ff4d6d,#ff7a92);
-transform:rotateY(180deg);
-padding:25px;overflow-y:auto;
-}
-.letter-text{
-font-size:.95rem;line-height:1.8;
-text-align:center;white-space:pre-line;
-}
-
-/* MENSAJES */
-.secret-msg{
-position:fixed;bottom:80px;left:50%;
-transform:translateX(-50%) translateY(20px);
-background:rgba(0,0,0,.75);
-border:1px solid rgba(255,77,109,.6);
-padding:12px 18px;border-radius:14px;
-opacity:0;z-index:9999;max-width:85%;
-text-align:center;backdrop-filter:blur(8px);
-transition:all .6s ease;
-}
-.secret-msg.show{
-opacity:1;transform:translateX(-50%) translateY(0);
-}
-
-/* HEARTS */
-.heart{
-position:fixed;color:#ff4d6d;
-animation:float 7s linear;
-}
-@keyframes float{
-from{transform:translateY(100vh)}
-to{transform:translateY(-100px)}
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:2.2rem}
-.chapter{padding:20px}
-.chapter img{width:90%;max-width:320px}
-.btn{width:85%;max-width:300px}
-#lock input{width:80%}
-.card{width:90%;max-width:350px;height:500px}
-.letter-text{font-size:.9rem}
-}
+.card-front,.card-back{position:absolute;width:100%;min-height:550px;backface-visibility:hidden;border-radius:20px}
+.card-front{background:#222;display:flex;align-items:center;justify-content:center;padding:20px}
+.card-back{background:linear-gradient(135deg,#ff4d6d,#ff7a92);transform:rotateY(180deg);padding:25px;overflow:auto}
+.letter-text{white-space:pre-line;line-height:1.9}
+.secret-msg{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);padding:12px 18px;border-radius:14px;opacity:0;transition:.5s}
+.secret-msg.show{opacity:1}
+.heart{position:fixed;animation:float 7s linear}
+@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
+@media(max-width:768px){.hero h1{font-size:2.2rem}.card,.card-inner,.card-front,.card-back{min-height:650px}}
 </style>
 </head>
 <body>
+<div id="progress"></div>
+<div id="intro"><h1>❤️ Preparando...</h1><div class="loader"></div></div>
+<div id="lock"><h2>🔒 Clave de amor</h2><input type="password" id="pass"><button class="btn" onclick="check()">Entrar ❤️</button></div>
 
-<div id="intro">
-<h1>❤️ Preparando ...</h1>
-<div class="loader"></div>
-</div>
+<audio id="music" loop><source src="voy-a-conquistar-tu-amor.mp3"></audio>
 
-<div id="lock">
-<h2>🔒 Clave de amor</h2>
-<input type="password" id="pass">
-<button class="btn" onclick="check()">Entrar ❤️</button>
-</div>
-
-<audio id="music" loop>
-<source src="voy-a-conquistar-tu-amor.mp3">
-</audio>
-
-<section class="hero">
-<h1>Nuestra Historia ❤️</h1>
-<button class="btn" onclick="start()">💖 Entrar</button>
-</section>
+<section class="hero"><h1>Nuestra Historia ❤️</h1><button class="btn" onclick="start()">💖 Entrar</button></section>
 
 <section class="chapter"><h1>En las dunas de Ica. 💕</h1><img src="foto1.jpg"></section>
 <section class="chapter"><h1>Nuestro primer añito. 💖</h1><img src="foto2.jpg"></section>
@@ -162,13 +52,14 @@ to{transform:translateY(-100px)}
 <section class="chapter"><h1>Viendo el sunset. 💘</h1><img src="foto5.jpg"></section>
 <section class="chapter"><h1>Paseito en caballito 💝</h1><img src="foto6.jpg"></section>
 
+<section class="chapter"><h1>⏳ Nuestro tiempo juntos</h1><h2 id="contador"></h2></section>
+
 <section class="chapter">
 <h1>💌 Carta final</h1>
-<div class="card" onclick="this.classList.toggle('open')">
+<div class="card" id="card">
 <div class="card-inner">
 <div class="card-front">Toca para abrir 💌</div>
-<div class="card-back">
-<div class="letter-text">
+<div class="card-back"><div class="letter-text">
 Quiero agradecerte por tenerme mucha paciencia,
 aun más cuando sé que tú no eres paciente.
 
@@ -183,10 +74,7 @@ Quiero muchas aventuras más a tu lado, seguir creando recuerdos contigo y acomp
 Te amo mucho mucho bastante grande ❤️
 
 Feliz #19 Gordita Hermosa 💖
-</div>
-</div>
-</div>
-</div>
+</div></div></div></div>
 </section>
 
 <div class="secret-msg" id="msg1">💖 Te amo gordita</div>
@@ -195,58 +83,31 @@ Feliz #19 Gordita Hermosa 💖
 <div class="secret-msg" id="msg4">❤️ Te amo Milkita</div>
 
 <script>
-function check(){
-if(document.getElementById("pass").value==="bellaqueo19"){
-document.getElementById("lock").style.display="none";
-}else{
-alert("Clave incorrecta ❤️");
-}
-}
+function check(){if(pass.value==="bellaqueo19"){lock.style.display="none"}else alert("Clave incorrecta ❤️")}
+function start(){music.volume=.4;music.play();intro.style.display="none";if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen()}
 
-function start(){
-document.getElementById("music").play();
-if(document.documentElement.requestFullscreen){
-document.documentElement.requestFullscreen();
-}
-document.getElementById("intro").style.display="none";
-}
-
-const chapters=document.querySelectorAll(".chapter");
-const messages=[msg1,msg2,msg3,msg4];
+const msg1=document.getElementById("msg1"),msg2=document.getElementById("msg2"),msg3=document.getElementById("msg3"),msg4=document.getElementById("msg4");
+const messages=[msg1,msg2,msg3,msg4],chapters=document.querySelectorAll(".chapter");
 
 window.addEventListener("scroll",()=>{
-
-chapters.forEach(ch=>{
-const rect=ch.getBoundingClientRect();
-if(rect.top<window.innerHeight*0.8){
-ch.classList.add("active");
-}
-});
-
+let s=(window.scrollY/(document.body.scrollHeight-innerHeight))*100;progress.style.width=s+"%";
+chapters.forEach(c=>{if(c.getBoundingClientRect().top<innerHeight*.8)c.classList.add("active")});
 messages.forEach(m=>m.classList.remove("show"));
-
-const current=[...chapters].findIndex(ch=>{
-const rect=ch.getBoundingClientRect();
-return rect.top<=window.innerHeight/2 &&
-rect.bottom>=window.innerHeight/2;
+const current=[...chapters].findIndex(ch=>{let r=ch.getBoundingClientRect();return r.top<=innerHeight/2&&r.bottom>=innerHeight/2});
+if(current<=1)msg1.classList.add("show"); else if(current<=3)msg2.classList.add("show"); else if(current==4)msg3.classList.add("show"); else if(current>=5)msg4.classList.add("show");
 });
 
-if(current===0 || current===1) msg1.classList.add("show");
-else if(current===2 || current===3) msg2.classList.add("show");
-else if(current===4) msg3.classList.add("show");
-else if(current>=5) msg4.classList.add("show");
+const inicio=new Date("2024-11-19");
+function contador(){let d=Math.floor((new Date()-inicio)/86400000); let el=document.getElementById("contador"); if(el) el.textContent=`❤️ ${d} días creando recuerdos juntos ❤️`;}
+contador(); setInterval(contador,60000);
 
+card.addEventListener("click",()=>{
+card.classList.toggle("open");
+for(let i=0;i<40;i++)setTimeout(()=>{let h=document.createElement("div");h.className="heart";h.innerHTML="💖";h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),7000)},i*80);
 });
 
-setInterval(()=>{
-const h=document.createElement("div");
-h.innerHTML="❤️";
-h.className="heart";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),7000);
-},400);
+setInterval(()=>{let h=document.createElement("div");h.className="heart";h.innerHTML="❤️";h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),7000)},500);
+window.dispatchEvent(new Event("scroll"));
 </script>
-
 </body>
 </html>
