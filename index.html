@@ -42,7 +42,7 @@ body{
     border:none;
 }
 
-/* BOTONES */
+/* BOTÓN */
 .btn{
     margin-top:20px;
     padding:12px 25px;
@@ -71,7 +71,7 @@ body{
     text-shadow:0 0 20px #ff4d6d;
 }
 
-/* NETFLIX CHAPTERS */
+/* CAPÍTULOS NETFLIX */
 .chapter{
     height:100vh;
     display:flex;
@@ -88,6 +88,13 @@ body{
 .chapter.active{
     opacity:1;
     transform:translateY(0);
+}
+
+.chapter img{
+    width:280px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(255,77,109,0.4);
 }
 
 /* CARTA */
@@ -123,14 +130,8 @@ body{
     padding:15px;
 }
 
-.card-front{
-    background:#222;
-}
-
-.card-back{
-    background:#ff4d6d;
-    transform:rotateY(180deg);
-}
+.card-front{ background:#222; }
+.card-back{ background:#ff4d6d; transform:rotateY(180deg); }
 
 /* CORAZONES */
 .hearts{
@@ -178,6 +179,7 @@ body{
 
 <!-- HERO -->
 <section class="hero">
+
     <h1>Nuestra Historia ❤️</h1>
 
     <button class="btn" onclick="document.getElementById('music').play()">
@@ -187,22 +189,44 @@ body{
     <button class="btn" onclick="document.documentElement.requestFullscreen()">
         🌙 Modo romántico
     </button>
+
 </section>
 
-<!-- NETFLIX STORY -->
+<!-- 🎬 CAPÍTULOS -->
 <section class="chapter">
     <h1>Capítulo 1 💕</h1>
-    <p>El día que empezó todo...</p>
+    <img src="foto1.jpg">
+    <p>El inicio de nuestra historia...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 2 💖</h1>
-    <p>Nuestros momentos juntos...</p>
+    <img src="foto2.jpg">
+    <p>Nuestros primeros momentos juntos...</p>
 </section>
 
 <section class="chapter">
     <h1>Capítulo 3 ❤️</h1>
-    <p>Y lo que aún nos falta vivir...</p>
+    <img src="foto3.jpg">
+    <p>Risas, aventuras y complicidad...</p>
+</section>
+
+<section class="chapter">
+    <h1>Capítulo 4 💞</h1>
+    <img src="foto4.jpg">
+    <p>Momentos que nunca olvidaré...</p>
+</section>
+
+<section class="chapter">
+    <h1>Capítulo 5 💘</h1>
+    <img src="foto5.jpg">
+    <p>Más unidos que nunca...</p>
+</section>
+
+<section class="chapter">
+    <h1>Capítulo 6 💝</h1>
+    <img src="foto6.jpg">
+    <p>Y todo lo que aún nos falta vivir...</p>
 </section>
 
 <!-- 💌 CARTA -->
@@ -213,27 +237,26 @@ body{
         <div class="card-inner">
             <div class="card-front">Toca para abrir 💌</div>
             <div class="card-back">
-                <p>Gracias por cada momento juntos ❤️</p>
+                <p>Gracias por ser parte de mi vida ❤️</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- JS -->
 <script>
 
-// 🔐 PASSWORD
+/* 🔐 CONTRASEÑA NUEVA */
 function checkPassword(){
     const pass = document.getElementById("password").value;
 
-    if(pass === "milakita25"){
+    if(pass === "bellaqueo19"){
         document.getElementById("lockScreen").style.display="none";
     }else{
         alert("Clave incorrecta ❤️");
     }
 }
 
-// 🎬 SCROLL CHAPTERS
+/* 🎬 SCROLL ANIMACIÓN */
 const chapters = document.querySelectorAll('.chapter');
 
 window.addEventListener('scroll',()=>{
@@ -244,7 +267,7 @@ window.addEventListener('scroll',()=>{
     });
 });
 
-// 💖 CORAZONES
+/* 💖 CORAZONES */
 function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
