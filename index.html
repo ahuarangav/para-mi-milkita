@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ 25 Meses Contigo ❤️</title>
+<title>❤️ Nuestra Historia ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
@@ -22,6 +22,37 @@ body{
     overflow-x:hidden;
 }
 
+/* 🔐 LOCK SCREEN */
+#lockScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#0f0f0f;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+#lockScreen input{
+    padding:10px;
+    margin-top:10px;
+    border-radius:10px;
+    border:none;
+}
+
+/* BOTONES */
+.btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    background:white;
+    color:black;
+}
+
 /* HERO */
 .hero{
     height:100vh;
@@ -30,107 +61,75 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:20px;
-    background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
-    url('foto1.jpg');
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('foto1.jpg');
     background-size:cover;
-    background-position:center;
 }
 
 .hero h1{
     font-family:'Great Vibes',cursive;
-    font-size:5rem;
-    color:#fff;
-    text-shadow: 0 0 20px rgba(255,77,109,0.6);
-    animation: glow 2s ease-in-out infinite alternate;
+    font-size:4rem;
+    text-shadow:0 0 20px #ff4d6d;
 }
 
-.hero p{
-    margin-top:15px;
-    font-size:1.3rem;
-    max-width:700px;
-}
-
-/* BOTONES */
-.btn{
-    margin-top:20px;
-    padding:15px 35px;
-    border:none;
-    border-radius:50px;
-    cursor:pointer;
-    font-size:1rem;
-    background:white;
-    color:black;
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:scale(1.05);
-}
-
-/* SECCIONES */
-.section{
-    padding:90px 10%;
-}
-
-.title{
+/* NETFLIX CHAPTERS */
+.chapter{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    font-size:2.5rem;
-    margin-bottom:50px;
+    padding:40px;
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s;
 }
 
-/* GALERÍA */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.gallery img{
-    width:100%;
-    border-radius:20px;
-    height:400px;
-    object-fit:cover;
-    transition:.4s;
-}
-
-.gallery img:hover{
-    transform:scale(1.03);
+.chapter.active{
+    opacity:1;
+    transform:translateY(0);
 }
 
 /* CARTA */
-.letter{
-    max-width:900px;
+.card{
+    width:280px;
+    height:180px;
+    perspective:1000px;
     margin:auto;
-    background:#171717;
-    padding:50px;
-    border-radius:25px;
-    line-height:2;
-    font-size:1.1rem;
+    cursor:pointer;
 }
 
-/* CONTADOR */
-.counter{
-    text-align:center;
-    font-size:2rem;
-    margin-top:30px;
+.card-inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transition:transform 0.8s;
+    transform-style:preserve-3d;
 }
 
-/* FINAL */
-.final{
-    text-align:center;
-    padding:120px 20px;
+.card.open .card-inner{
+    transform:rotateY(180deg);
 }
 
-.final h2{
-    font-family:'Great Vibes',cursive;
-    font-size:4rem;
-    margin-bottom:20px;
+.card-front, .card-back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    padding:15px;
 }
 
-.final p{
-    font-size:1.4rem;
+.card-front{
+    background:#222;
+}
+
+.card-back{
+    background:#ff4d6d;
+    transform:rotateY(180deg);
 }
 
 /* CORAZONES */
@@ -138,58 +137,23 @@ body{
     position:fixed;
     width:100%;
     height:100%;
-    top:0;
-    left:0;
     pointer-events:none;
-    overflow:hidden;
 }
 
 .heart{
     position:absolute;
     color:#ff4d6d;
-    animation:float 10s linear infinite;
+    animation:float 8s linear infinite;
 }
 
-/* ANIMACIONES */
 @keyframes float{
-    from{
-        transform:translateY(100vh);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-100px);
-        opacity:0;
-    }
-}
-
-@keyframes glow {
-  from {
-    text-shadow: 0 0 10px #ff4d6d;
-  }
-  to {
-    text-shadow: 0 0 30px #ff4d6d;
-  }
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-100px);}
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
-
-.hero h1{
-    font-size:3rem;
-}
-
-.final h2{
-    font-size:2.5rem;
-}
-
-.letter{
-    padding:30px;
-}
-
-}
-
-audio{
-    display:none;
+.hero h1{font-size:2.5rem;}
 }
 
 </style>
@@ -197,128 +161,101 @@ audio{
 
 <body>
 
+<!-- 🔐 LOCK -->
+<div id="lockScreen">
+    <h2>🔒 Clave de amor</h2>
+    <input type="password" id="password">
+    <button class="btn" onclick="checkPassword()">Entrar ❤️</button>
+</div>
+
+<!-- 💖 CORAZONES -->
 <div class="hearts"></div>
 
-<!-- MÚSICA -->
-<audio id="musica" loop>
-    <source src="voy-a-conquistar-tu-amor.mp3" type="audio/mpeg">
+<!-- 🎵 MÚSICA -->
+<audio id="music" loop>
+    <source src="voy-a-conquistar-tu-amor.mp3">
 </audio>
 
 <!-- HERO -->
 <section class="hero">
+    <h1>Nuestra Historia ❤️</h1>
 
-    <h1>Para mi Milkita ❤️</h1>
-
-    <p>
-        25 meses de amor, recuerdos y momentos que guardo como tesoros en mi corazón.
-    </p>
-
-    <button class="btn" onclick="document.getElementById('musica').play()">
+    <button class="btn" onclick="document.getElementById('music').play()">
         ▶ Activar música
     </button>
 
-    <button class="btn" onclick="activarPantalla()">
+    <button class="btn" onclick="document.documentElement.requestFullscreen()">
         🌙 Modo romántico
     </button>
-
 </section>
 
-<!-- GALERÍA -->
-<section id="historia" class="section">
+<!-- NETFLIX STORY -->
+<section class="chapter">
+    <h1>Capítulo 1 💕</h1>
+    <p>El día que empezó todo...</p>
+</section>
 
-    <h2 class="title">Nuestros momentos juntos 💕</h2>
+<section class="chapter">
+    <h1>Capítulo 2 💖</h1>
+    <p>Nuestros momentos juntos...</p>
+</section>
 
-    <div class="gallery">
-        <img src="foto1.jpg">
-        <img src="foto2.jpg">
-        <img src="foto3.jpg">
-        <img src="foto4.jpg">
-        <img src="foto5.jpg">
-        <img src="foto6.jpg">
+<section class="chapter">
+    <h1>Capítulo 3 ❤️</h1>
+    <p>Y lo que aún nos falta vivir...</p>
+</section>
+
+<!-- 💌 CARTA -->
+<section class="chapter">
+    <h1>💌 Carta</h1>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+        <div class="card-inner">
+            <div class="card-front">Toca para abrir 💌</div>
+            <div class="card-back">
+                <p>Gracias por cada momento juntos ❤️</p>
+            </div>
+        </div>
     </div>
-
-</section>
-
-<!-- CARTA -->
-<section class="section">
-
-    <h2 class="title">Una Carta Para Ti 💌</h2>
-
-    <div class="letter">
-
-        <p>Mi querida Milkita ❤️</p>
-        <br>
-        <p>Hoy celebramos 25 meses juntos, llenos de amor y recuerdos.</p>
-        <br>
-        <p>Gracias por estar conmigo incluso a la distancia.</p>
-        <br>
-        <p>Te amo mucho, mucho, bastante grande ❤️</p>
-        <br>
-        <p>Con todo mi amor,<br>Alexander</p>
-
-    </div>
-
-</section>
-
-<!-- CONTADOR -->
-<section class="section">
-
-    <h2 class="title">Nuestro Tiempo Juntos ⏳</h2>
-
-    <div class="counter" id="contador"></div>
-
-</section>
-
-<!-- FINAL -->
-<section class="final">
-
-    <h2>Te Amo ❤️</h2>
-
-    <p>25 meses después sigo enamorándome de ti cada día.</p>
-
 </section>
 
 <!-- JS -->
 <script>
 
-// contador
-const inicio = new Date("2024-05-19");
+// 🔐 PASSWORD
+function checkPassword(){
+    const pass = document.getElementById("password").value;
 
-function actualizarContador(){
-    const hoy = new Date();
-    const dias = Math.floor((hoy - inicio)/(1000*60*60*24));
-
-    document.getElementById("contador").innerHTML =
-    `❤️ ${dias} días compartiendo nuestra historia ❤️`;
-}
-
-actualizarContador();
-
-// corazones
-function crearCorazon(){
-
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';
-
-    heart.style.left = Math.random()*100 + 'vw';
-    heart.style.fontSize = Math.random()*20 + 15 + 'px';
-    heart.style.animationDuration = (Math.random()*5 + 5) + 's';
-
-    document.querySelector('.hearts').appendChild(heart);
-
-    setTimeout(()=> heart.remove(), 10000);
-}
-
-setInterval(crearCorazon,500);
-
-// fullscreen seguro
-function activarPantalla(){
-    const doc = document.documentElement;
-    if (doc.requestFullscreen) {
-        doc.requestFullscreen();
+    if(pass === "milakita25"){
+        document.getElementById("lockScreen").style.display="none";
+    }else{
+        alert("Clave incorrecta ❤️");
     }
 }
+
+// 🎬 SCROLL CHAPTERS
+const chapters = document.querySelectorAll('.chapter');
+
+window.addEventListener('scroll',()=>{
+    chapters.forEach(c=>{
+        if(c.getBoundingClientRect().top < window.innerHeight-100){
+            c.classList.add('active');
+        }
+    });
+});
+
+// 💖 CORAZONES
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.querySelector(".hearts").appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
+}
+
+setInterval(createHeart,400);
 
 </script>
 
